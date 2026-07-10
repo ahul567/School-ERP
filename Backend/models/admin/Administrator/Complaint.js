@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const complaintSchema = new mongoose.Schema({
+
+    title:{
+        type:String,
+        required:true
+    },
+
+    description:{
+        type:String,
+        required:true
+    },
+
+    attachment:{
+        type:String,
+        default:""
+    }
+
+},{
+    timestamps:true
+});
+
+module.exports = mongoose.model("Complaint", complaintSchema);
