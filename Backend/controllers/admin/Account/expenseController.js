@@ -2,7 +2,7 @@ const expense = require('../../../models/admin/Account/expense');
 
 exports.createExpense = async(req,res)=>{
     try{
-        const dataExpense = await expense.create(req.params);
+        const dataExpense = await expense.create(req.body);
         res.status(201).json({
             success:true,
             message: "Expense data create successfully",
@@ -52,7 +52,7 @@ exports.getExpenseById = async(req,res)=>{
      });
 
  }catch(error){
-    res.json({
+    res.status(500).json({
         success:false,
         message:error.message
     });
@@ -60,11 +60,51 @@ exports.getExpenseById = async(req,res)=>{
 };
 
 exports.updateExpenseById = async(req,res)=>{
-    const updateExpenseData = await expense.findByIdAndUpdate(req.params.id);
+    try{
+        const updateExpenseData = await expense.findByIdAndUpdate(req.params.id);
 
     if(!expense){
-        res.status.json()
+        res.status(404).json({
+            success:false,
+            message:"Expense not found"
+        });
     }
-}
+    res.status(200).json({
+        success:true,
+        message:"Expense successfully updated ",
+        data
+    })
+    }catch(error){
+        res.status(500).json({
+            success:false,
+            message:error.message
+        });
+    }
+    
+};
+
+exports.deleteExpenseById = async(req,res)=>{
+    try{
+        const deleteExpenseData = await expense.findByIdAndDelete(req.params.id);
+         if(!expense){
+        res.status(404).json({
+            success:false,
+            message:"Expense not found",
+        });
+    }
+    res.status(200).json({
+        success:true,
+        message:"expense successfully deleted"
+    });
+    }catch(error){
+        res.status(500).json({
+            success:true,
+            message:error.message
+        })
+    }
+   
+};
+
+
 
 

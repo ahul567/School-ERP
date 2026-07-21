@@ -2,6 +2,7 @@ const FeeType = require('../../../models/admin/Account/feeType');
 
 exports.createFeeType = async(req,res)=>{
     try{
+          console.log(req.body);
         const feeType = await FeeType.create(req.body);
         res.status(201).json({
             success:true,
