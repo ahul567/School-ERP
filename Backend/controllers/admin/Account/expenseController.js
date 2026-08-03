@@ -25,7 +25,7 @@ exports.getAllExpense = async(req,res)=>{
        data:getExpenseData
     });
     }catch(error){
-        res.staus(500).json({
+        res.status(500).json({
         success:false,
         message: error.message
     });
@@ -37,7 +37,7 @@ exports.getExpenseById = async(req,res)=>{
  try{
     const getExpenseIdData = await expense.findById(req.params.id);
     
-    if(!expense){
+    if(!getExpenseIdData){
         return res.status(404).json({
             success:false,
            message:"Expense not found"
@@ -61,10 +61,17 @@ exports.getExpenseById = async(req,res)=>{
 
 exports.updateExpenseById = async(req,res)=>{
     try{
-        const updateExpenseData = await expense.findByIdAndUpdate(req.params.id);
+        const updateExpenseData = await expense.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new:true,
+                runValidators:true
+            }
+        );
 
-    if(!expense){
-        res.status(404).json({
+    if(!updateExpenseData){
+        return res.status(404).json({
             success:false,
             message:"Expense not found"
         });
@@ -72,8 +79,8 @@ exports.updateExpenseById = async(req,res)=>{
     res.status(200).json({
         success:true,
         message:"Expense successfully updated ",
-        data
-    })
+        data:updateExpenseData
+    });
     }catch(error){
         res.status(500).json({
             success:false,
@@ -86,8 +93,8 @@ exports.updateExpenseById = async(req,res)=>{
 exports.deleteExpenseById = async(req,res)=>{
     try{
         const deleteExpenseData = await expense.findByIdAndDelete(req.params.id);
-         if(!expense){
-        res.status(404).json({
+         if(!deleteExpenseData){
+        return res.status(404).json({
             success:false,
             message:"Expense not found",
         });
@@ -100,7 +107,7 @@ exports.deleteExpenseById = async(req,res)=>{
         res.status(500).json({
             success:true,
             message:error.message
-        })
+        });
     }
    
 };
