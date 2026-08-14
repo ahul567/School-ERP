@@ -6,12 +6,14 @@ const feeTypesRoutes = require("./routes/admin/Account/FeeTypesRouter");
 const expenseRouter = require("./routes/admin/Account/ExpenseRouter");
 const incomeRouter = require("./routes/admin/Account/incomeRouter");
 const invoiceRouter = require("./routes/admin/Account/invoiceRouter");
+const authRoutes = require('./routes/authRoutes');
 dotenv.config();
 connectDB();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 app.use("/api/fee-types",feeTypesRoutes);
 app.use("/api/expense",expenseRouter);
 app.use("/api/income",incomeRouter);
