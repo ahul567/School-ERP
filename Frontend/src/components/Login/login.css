@@ -17,7 +17,7 @@
 .login-group {
   width: 100%;
   display: flex;
-
+ 
 }
 .main-container{
   position: absolute;
@@ -35,15 +35,27 @@
   -o-object-fit: cover;
   object-fit: cover;
   vertical-align: middle;
+  
 }
 .login-content{
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   margin-bottom: 80px;
   width: 482px;
   -ms-flex-negative: 0;
   flex-shrink: 0;
   padding: 32px;
 }
+.form-label.required::after{
+  content:"*";
+  line-height: 0px;
+  margin-inline-start: 4px;
+  display: inline-block;
+  color:red;
+  margin-top: 20px;
+  
+}
+
+  
 
 .login-content h4{
   font-size: 18px;
@@ -68,4 +80,118 @@ margin-top: 0;
 font-size: 16px;
 color: #7A6F69;
 margin-bottom: 30px;
+}
+.form-control{
+ 
+    width: 100%;
+    height: 48px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #C0BBB5;
+    border-radius: 0.375rem;
+    opacity: 1;
+    display: block;
+    appearance: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+
+.form-label{
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+  color: black;
+}
+input{
+  font-size: 14px;
+  margin: 0;
+  font-family: inherit;
+}
+.login-form button {
+  width: 100%;
+  margin-top: 10px;
+}
+.btn {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 36px 12px;
+  border-radius: 4px;
+  border-width: 1px;
+  white-space: nowrap;
+  border-style: solid;
+  text-transform: capitalize;
+-moz-transition: all linear 0.3s;
+transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+}
+.login-content nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+button:not(:disabled){
+  cursor: pointer;
+}
+
+.login-content nav button {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-align: center;
+  text-transform: capitalize;
+  color: white;
+}
+button{
+  border: none;
+  outline: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.login-banner blockquote{
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-banner div{
+  position: absolute;
+  width: 23%;
+  margin-left: 15%;
+  margin-bottom:5%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 50px;
+  padding: 20px;
+  background: linear-gradient(113deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.blockquote {
+  margin: 0 0 1rem;
+}
+.login-banner label{
+  
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: right;
+
+}
+.label{
+display: inline block;
+  margin-bottom: 0px;
+
 }
