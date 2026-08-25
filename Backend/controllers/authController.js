@@ -2,100 +2,114 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-
 // ================= REGISTER =================
 
 exports.register = async (req, res) => {
     try {
+
         const {
             username,
-            name,
             email,
             password,
             role
         } = req.body;
 
-        if (!username || !name || !email || !password) {
+        // Check required fields
+        if (!username || !email || !password || !role) {
             return res.status(400).json({
                 success: false,
-                message: "Username, name, email and password are required"
+                message: "Username, email, password and role are required"
             });
         }
 
-        const existingUser = await User.findOne({
-            $or: [
-                { email },
-                { username }
-            ]
+        // Check existing username
+        const existingUsername = await User.findOne({
+            username
         });
 
-        if (existingUser) {
+        if (existingUsername) {
             return res.status(400).json({
                 success: false,
-                message: "Username or email already exists"
+                message: "Username already exists"
             });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // Check existing email
+        const existingEmail = await User.findOne({
+            email
+        });
 
+        if (existingEmail) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already exists"
+            });
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(
+            password,
+            10
+        );
+
+        // Create user
         const user = await User.create({
             username,
-            name,
             email,
             password: hashedPassword,
-            role: role || "Student"
+            role
         });
 
+        // Response
         res.status(201).json({
             success: true,
             message: "User registered successfully",
             data: {
                 id: user._id,
                 username: user.username,
-                name: user.name,
                 email: user.email,
                 role: user.role
             }
         });
 
     } catch (error) {
+
         res.status(500).json({
             success: false,
             message: error.message
         });
+
     }
 };
+
 
 // ================= LOGIN =================
 
 exports.login = async (req, res) => {
     try {
 
-        const { email, password } = req.body;
+        const {
+            username,
+            password
+        } = req.body;
 
         // Check required fields
-        if (!email || !password) {
+        if (!username || !password) {
             return res.status(400).json({
                 success: false,
-                message: "Email and password are required"
+                message: "Username and password are required"
             });
         }
 
         // Find user
-        const user = await User.findOne({ email });
+        const user = await User.findOne({
+            username
+        });
 
         if (!user) {
             return res.status(401).json({
                 success: false,
-                message: "Invalid email or password"
-            });
-        }
-
-        // Check account status
-        if (user.status && user.status !== "Active") {
-            return res.status(403).json({
-                success: false,
-                message: "User account is inactive"
+                message: "Invalid username or password"
             });
         }
 
@@ -108,7 +122,7 @@ exports.login = async (req, res) => {
         if (!isPasswordMatch) {
             return res.status(401).json({
                 success: false,
-                message: "Invalid email or password"
+                message: "Invalid username or password"
             });
         }
 
@@ -131,7 +145,7 @@ exports.login = async (req, res) => {
             token: token,
             data: {
                 id: user._id,
-                name: user.name,
+                username: user.username,
                 email: user.email,
                 role: user.role
             }
@@ -146,4 +160,3 @@ exports.login = async (req, res) => {
 
     }
 };
-
