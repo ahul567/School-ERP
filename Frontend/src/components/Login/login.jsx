@@ -9,57 +9,99 @@ function login() {
   
 
   const handleLogin = async (e) => {
-
     e.preventDefault();
 
     try {
 
-      const response = await fetch(
-        "http://localhost:5000/api/auth/login",
-        {
-          method: "POST",
+        const response = await fetch(
+            "http://localhost:5000/api/auth/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            }
+        );
 
-          headers: {
-            "Content-Type": "application/json"
-          },
+        const data = await response.json();
 
-          body: JSON.stringify({
-            username: username,
-            password: password
-          })
+        console.log("LOGIN RESPONSE:", data);
+
+        if (!response.ok) {
+            alert(data.message || "Login failed");
+            return;
         }
-      );
 
-      const data = await response.json();
+        // Check response data
+        if (!data.token) {
+            console.error("Token missing:", data);
+            alert("Login successful but token is missing");
+            return;
+        }
 
-      if (!response.ok) {
-        alert(data.message || "Login failed");
-        return;
-      }
+        if (!data.data) {
+            console.error("User data missing:", data);
+            alert("Login successful but user data is missing");
+            return;
+        }
 
-      // JWT token save
-      localStorage.setItem("token", data.token);
+        // Save login information
+        localStorage.setItem("token", data.token);
+        localStorage.setItem(
+            "user",
+            JSON.stringify(data.data)
+        );
 
-      // User data save
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.data)
-      );
+        console.log("USER DATA:", data.data);
+        console.log("ROLE:", data.data.role);
 
-      alert("Login successful");
+        alert("Login successful");
 
-      console.log(data);
+        // Role based navigation
+        if (data.data.role === "Admin") {
+
+            window.location.href = "/admin";
+
+        } else if (data.data.role === "Teacher") {
+
+            window.location.href = "/teacher";
+
+        } else if (data.data.role === "Student") {
+
+            window.location.href = "/student";
+
+        } else if (data.data.role === "Parent") {
+
+            window.location.href = "/parent";
+
+        } else if (data.data.role === "Accountant") {
+
+            window.location.href = "/accountant";
+
+        } else if (data.data.role === "Librarian") {
+
+            window.location.href = "/librarian";
+
+        } else if (data.data.role === "Receptionist") {
+
+            window.location.href = "/receptionist";
+
+        } else {
+
+            alert("Invalid role: " + data.data.role);
+        }
 
     } catch (error) {
 
-      console.error(error);
+        console.error("LOGIN ERROR:", error);
 
-      alert("Unable to connect to server");
-
+        alert("Something went wrong. Check Console.");
     }
-
-  };
-
+};
   return (
 
     <div className="main-container">
