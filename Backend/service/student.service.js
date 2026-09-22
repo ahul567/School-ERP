@@ -1,7 +1,7 @@
 const Student = require("../models/student.models");
 
-exports.creatreStudents = async(data) => {
-    return await Student.find().
+exports.createStudent = async(data) => {
+     return await Student.create(data);
     populate("user")
     .populate("class")
     .populate("section")
