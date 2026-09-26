@@ -24,4 +24,32 @@ export const getstudentByTd = async(id) => {
         );
     }
     return data.data;
-}
+};
+
+export const updateStudent = async(id,
+    student
+) => {
+
+        const response = await fetch(
+            `${API_URL}/${id}`,
+            {
+                method:"PUT",
+                headers:{
+                    "Content-Type:"application/json"
+                },
+                body:JSON.stringify(student)
+            }
+        );
+
+        const data = await response.json();
+
+        if(!response.ok){
+            throw new Error(
+                data.message || "Unable to update student"
+            );
+        }
+        return data.data;
+    }
+
+
+    

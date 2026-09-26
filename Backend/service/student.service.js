@@ -38,5 +38,6 @@ exports.updateStudent = async (id,data) => {
 };
 
 exports.deleteStudent = async(id) => {
-    return await Student.findByIdAndDeete(id);
+    return await Student.findByIdAndDelete(id);
 };
+
