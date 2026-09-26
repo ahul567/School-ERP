@@ -14,7 +14,7 @@ export const getStudents = async()=>{
 };
 
 export const getstudentByTd = async(id) => {
-    cxonst response = await fetch(
+    const response = await fetch(
         `${API_URL}/${id}`
     );
     const data = await response.json();
@@ -26,30 +26,50 @@ export const getstudentByTd = async(id) => {
     return data.data;
 };
 
-export const updateStudent = async(id,
-    student
-) => {
-
-        const response = await fetch(
-            `${API_URL}/${id}`,
-            {
-                method:"PUT",
-                headers:{
-                    "Content-Type:"application/json"
-                },
-                body:JSON.stringify(student)
-            }
-        );
-
-        const data = await response.json();
+export const updateStudentById = async(id)=>{
+     const response = await fetch(
+        `${API_URL}/${id}`,
+        {
+            method:"PUT".
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(student);
+     )
+     
+    const data = await response.json();
 
         if(!response.ok){
             throw new Error(
+
                 data.message || "Unable to update student"
+
             );
+
+        
         }
-        return data.data;
-    }
+            return data.data;
+        };
+
+export const deleStudent = async(id) =>{
+    const response = await fetch(
+        `${API_URL}/${id}`,
+
+        {
+            method:"DELETE"
+        }
+    );
+
+    const data = await response.json();
+       if(!response.ok){
+        throw new Error(
+            data.message || "Unable to delete student"
+        );
+       }
+    return data;
+}
+
+
+
 
 
     
