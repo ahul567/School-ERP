@@ -1,0 +1,307 @@
+.student-page {
+    width: 100%;
+    padding: 25px;
+    background: #f7f8fa;
+    min-height: calc(100vh - 60px);
+}
+
+
+/* HEADER */
+
+.student-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.student-page-header h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.student-breadcrumb {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* CARD */
+
+.student-card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* TOP */
+
+.student-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+
+/* ADD BUTTON */
+
+.add-student-btn {
+    border: none;
+    background: #0d6efd;
+    color: #fff;
+    padding: 9px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-student-btn:hover {
+    background: #0b5ed7;
+}
+
+
+/* EXPORT */
+
+.student-export-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.student-export-buttons button {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 8px 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.student-export-buttons button:hover {
+    background: #f3f3f3;
+}
+
+
+/* SEARCH */
+
+.student-search {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.student-search label {
+    font-size: 14px;
+}
+
+.student-search input {
+    height: 36px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 10px;
+    outline: none;
+}
+
+.student-search input:focus {
+    border-color: #86b7fe;
+}
+
+
+/* TABLE */
+
+.student-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.student-table th {
+    background: #fafafa;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.student-table td {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* PHOTO */
+
+.student-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student-photo-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #555;
+}
+
+
+/* STATUS */
+
+.status-active {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #d1e7dd;
+    color: #0f5132;
+    font-size: 12px;
+}
+
+.status-inactive {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: #f8d7da;
+    color: #842029;
+    font-size: 12px;
+}
+
+
+/* ACTION */
+
+.student-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.student-actions button {
+    border: none;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.view-btn {
+    background: #198754;
+}
+
+.edit-btn {
+    background: #fd7e14;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+
+/* FOOTER */
+
+.student-table-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #666;
+}
+
+.student-pagination {
+    display: flex;
+}
+
+.student-pagination button {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+
+.student-pagination button.active-page {
+    background: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+
+/* LOADING */
+
+.student-loading {
+    padding: 40px;
+    text-align: center;
+}
+
+
+/* ERROR */
+
+.student-error {
+    background: #f8d7da;
+    color: #842029;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+
+/* NO DATA */
+
+.no-data {
+    text-align: center !important;
+    padding: 30px !important;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .student-page {
+        padding: 15px;
+    }
+
+    .student-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .student-search {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .student-search input {
+        width: 100%;
+    }
+
+    .student-table-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
