@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login/login";
-
+import StudentList from "./modules/student/pages/StudentList";
+import StudentCreate from "./modules/student/pages/studentCreate";
+import StudentEdit from "./modules/student/pages/StudentEdit";
+import StudentView from "./modules/student/pages/StudentView";
 
 
 
@@ -11,15 +14,13 @@ function App() {
 
             <Routes>
 
-                <Route path="/" element={<Login />} />
-                <Route path="/login" element={<Login />} />
-              
-                {/*<Route path="/teacher" element={<Teacher />} />
-                <Route path="/student" element={<Student />} />
-                <Route path="/parent" element={<Parent />} />
-                <Route path="/accountant" element={<Accountant />} />
-                <Route path="/librarian" element={<Librarian />} />
-                <Route path="/receptionist" element={<Receptionist />} />*/}
+                 <Route path="/" element={<Login />} />
+                 <Route path="/login" element={<Login />} />
+                 <Route path="/students" element={<StudentList />}/>
+                 <Route path="/students/create" element={<StudentCreate />}/>
+                 <Route path="/students/:id" element={<StudentView />}/>
+                 <Route path="/students/:id/edit" element={<StudentEdit />}/>
+               
 
             </Routes>
 

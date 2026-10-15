@@ -72,7 +72,7 @@ function login() {
 
         } else if (data.data.role === "Student") {
 
-            window.location.href = "/student";
+            window.location.href = "/students";
 
         } else if (data.data.role === "Parent") {
 
